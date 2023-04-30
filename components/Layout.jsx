@@ -21,8 +21,14 @@ const Layout = ({ children, title }) => {
                     <Link href="/" className="text-lg font-bold">
                         amazona
                     </Link>
+
+                    <div className={classes.grow}></div>
+                    <div>
+                        <Link href="/cart" className={classes.navlink}>Cart</Link>
+                        <Link href="/login" className={classes.navlink}>Login</Link>
+                    </div>
                 </Toolbar>
-            </AppBar>
+            </AppBar >
             <Container className={classes.main}>
                 {children}
             </Container>

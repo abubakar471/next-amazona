@@ -7,12 +7,30 @@ const useStyles = makeStyles({
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         color: 'white',
         padding: '0 30px',
+
+        '& a': {
+            color: '#fff',
+            marginLeft: 10
+        }
+    },
+    brand: {
+        fontWeight: 'bold',
+        fontSize: '1.5rem'
+    },
+    grow: {
+        flexGrow: 1
+    },
+    navlink: {
+        marginLeft: 10,
+        '&:hover': {
+            textDecoration: 'underline'
+        }
     },
     main: {
         minHeight: '50vh'
     },
-    footer : {
-        textAlign : 'center'
+    footer: {
+        textAlign: 'center'
     }
 });
 
