@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
+import Container from '@mui/material/Container';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 
 const Layout = ({ children, title }) => {
     return (
@@ -10,21 +13,17 @@ const Layout = ({ children, title }) => {
                 <meta name="description" content="next amazona online e-commerce platform" />
             </Head>
             <div className='flex min-h-screen flex-col justify-between'>
-                <header>
-                    <nav className="flex h-12 
-                    justify-between shadow-md
-                     items-center px-4
-                     ">
+
+                <AppBar position="static">
+                    <Toolbar>
                         <Link href="/" className="text-lg font-bold">
                             amazona
                         </Link>
-                        <div>
-                            <Link href="/cart" className='p-2'>Cart</Link>
-                            <Link href="/login" className='p-2'>Login</Link>
-                        </div>
-                    </nav>
-                </header>
-                <main className='container mt-4 m-auto px-4'>{children}</main>
+                    </Toolbar>
+                </AppBar>
+                <Container>
+                    {children}
+                </Container>
                 <footer className='flex items-center justify-center h-10 shadow-inner'>
                     <p>Copyright &copy; 2023 | developed by abu bakar siddique </p>
                 </footer>
