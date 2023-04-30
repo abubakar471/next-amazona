@@ -31,6 +31,10 @@ const useStyles = makeStyles({
     },
     footer: {
         textAlign: 'center'
+    },
+    section: {
+        marginTop: 20,
+        marginBottom: 20
     }
 });
 

@@ -18,10 +18,27 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+.navbar {
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' !important;
+  border: 0;
+  box-shadow: '0 3px 5px 2px rgba(255, 105, 135, .3)';
+  color: 'white';
+  padding: '0 30px';
+}
+
+.navlink {
+  margin-left: 10px !important;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
 .card {
   @apply mb-5 block rounded-lg border border-gray-200 shadow-md
 }
 
 .primary-button {
-  @apply rounded bg-amber-300 py-2 px-4 shadow outline-none hover:bg-amber-400 active:bg-amber-500
+  @apply rounded bg-amber-300 py-2 px-4 shadow outline-none;
+  @apply hover:bg-amber-400 active:bg-amber-500
 }
