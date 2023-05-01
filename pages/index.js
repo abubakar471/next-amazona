@@ -3,9 +3,11 @@ import ProductItem from "@/components/ProductItem";
 import Product from "@/models/Product";
 // import data from "@/utils/data";
 import db from "@/utils/db";
+// import useStyles from "@/utils/styles";
 // import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 
 export default function Home({ products }) {
+
   return (
     <Layout title="Home">
       <div className="grid mt-20 grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">

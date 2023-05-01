@@ -1,14 +1,17 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import useStyles from '../utils/styles'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import { Store } from '@/utils/Store';
 // import styles from "../styles/Layout.css"
 
 const Layout = ({ children, title, description }) => {
+    const { state     } = useContext(Store);
+    const { cart } = state;
     const classes = useStyles();
     const theme = createTheme({
         typography: {
@@ -33,6 +36,7 @@ const Layout = ({ children, title, description }) => {
             }
         }
     })
+
     return (
         <>
             <Head>
@@ -50,7 +54,16 @@ const Layout = ({ children, title, description }) => {
 
                         <div className="grow"></div>
                         <div>
-                            <Link href="/cart" className="navlink">Cart</Link>
+                            <Link href="/cart" className="navlink">
+                                {cart.cartItems.length > 0 && (
+
+                                    <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                                        {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                                        {/* {cart.cartItems.length}  */}
+                                    </span>
+                                )}
+                                Cart
+                            </Link>
                             <Link href="/login" className="navlink">Login</Link>
                         </div>
                     </Toolbar>
