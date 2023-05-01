@@ -10,9 +10,12 @@ import { Store } from '@/utils/Store';
 // import styles from "../styles/Layout.css"
 
 const Layout = ({ children, title, description }) => {
-    const { state     } = useContext(Store);
+    const { state } = useContext(Store);
     const { cart } = state;
     const classes = useStyles();
+
+    // in this theme object function where we created a key called components for mui components and to 
+    // give those components styling using createTheme
     const theme = createTheme({
         typography: {
             h1: {
@@ -33,6 +36,20 @@ const Layout = ({ children, title, description }) => {
             },
             secondary: {
                 main: '#208000'
+            }
+        },
+        // this is targeting our Appbar or navbar i mean
+        components: {
+            MuiAppBar: {
+                styleOverrides: {
+                    colorPrimary: {
+                        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+                        border: 0,
+                        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+                        color: 'white',
+                        padding: '0 30px',
+                    }
+                }
             }
         }
     })
