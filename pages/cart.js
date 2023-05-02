@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react'
+import dynamic from 'next/dynamic';
 
 const CartScreen = () => {
     const { state, dispatch } = useContext(Store);
@@ -92,4 +93,6 @@ const CartScreen = () => {
     )
 }
 
-export default CartScreen
+// the dynamic function is for solving the hydration error that shows ui does not match what was rendered 
+// server, life saving issure it was !
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false })

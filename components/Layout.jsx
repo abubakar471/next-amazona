@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,6 +13,11 @@ const Layout = ({ children, title, description }) => {
     const { state } = useContext(Store);
     const { cart } = state;
     const classes = useStyles();
+    const [cartItemsCount, setCartItemsCount] = useState(0);
+
+    useEffect(() => {
+        setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+    }, [cart.cartItems]);
 
     // in this theme object function where we created a key called components for mui components and to 
     // give those components styling using createTheme
@@ -72,11 +77,10 @@ const Layout = ({ children, title, description }) => {
                         <div className="grow"></div>
                         <div>
                             <Link href="/cart" className="navlink">
-                                {cart.cartItems.length > 0 && (
+                                {cartItemsCount > 0 && (
 
                                     <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                                        {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-                                        {/* {cart.cartItems.length}  */}
+                                        {cartItemsCount}
                                     </span>
                                 )}
                                 Cart
