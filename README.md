@@ -22,3 +22,11 @@
 
     again it first time didn't work, so i removed all the code again and
     simply written all the code just as before and it worked.
+
+# Log in 
+
+here i have used react-hook-form for client side form validation
+
+yarn add react-hook-form 
+
+and see the other documentaion from their site to get to know how to use it.

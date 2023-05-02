@@ -82,7 +82,7 @@ const CartScreen = () => {
                                     </div>
                                 </li>
                                 <li>
-                                    <button onClick={() => router.push('/shipping')} className='primary-button w-full'>Checkout</button>
+                                    <button onClick={() => router.push('login?redirect=/shipping')} className='primary-button w-full'>Checkout</button>
                                 </li>
                             </ul>
                         </div>
