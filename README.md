@@ -30,3 +30,12 @@ here i have used react-hook-form for client side form validation
 yarn add react-hook-form 
 
 and see the other documentaion from their site to get to know how to use it.
+
+we have used next-auth a package for next js , that handles authentication for us.
+
+# user menu 
+
+we are using headless ui for the dropdown and user menu in header in our app.
+
+yarn add @headlessui/react
+

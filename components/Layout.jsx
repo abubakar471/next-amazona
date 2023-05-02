@@ -9,13 +9,16 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { Store } from '@/utils/Store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
+import { Menu } from '@headlessui/react';
+import DropdownLink from './DropdownLink';
+import Cookies from 'js-cookie';
 
 const Layout = ({ children, title, description }) => {
     // status is a flag , that shows loading of session , that means when we loading session we won't show
     // user a name
     const { status, data: session } = useSession();
-    const { state } = useContext(Store);
+    const { state, dispatch } = useContext(Store);
     const { cart } = state;
     const classes = useStyles();
     const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -24,6 +27,11 @@ const Layout = ({ children, title, description }) => {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
     }, [cart.cartItems]);
 
+    const logoutClickHandler = () => {
+        Cookies.remove('cart');
+        dispatch({ type: "CART_RESET" });
+        signOut({ callbackUrl: '/login' });
+    }
     // in this theme object function where we created a key called components for mui components and to 
     // give those components styling using createTheme
     const theme = createTheme({
@@ -96,7 +104,28 @@ const Layout = ({ children, title, description }) => {
                             {status === 'loading' ? (
                                 'loading'
                             ) : session?.user ? (
-                                <span className={classes.navlink}>{session.user.name}</span>
+                                <Menu as="div" className={`${classes.navlink} relative inline-block`} >
+                                    <Menu.Button>
+                                        {session.user.name}
+                                    </Menu.Button>
+                                    <Menu.Items style={{
+                                        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+                                        border: 0,
+                                        borderRadius: "10px",
+                                        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+                                        color: 'white',
+                                    }} className='bg-white absolute w-56 right-0 origin-top-right shadow-lg'>
+                                        <Menu.Item>
+                                            <DropdownLink className="dropdown-link text-white-600" href="/profile">Profile</DropdownLink>
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            <DropdownLink className="dropdown-link text-white-600" href="/order-history">Order History</DropdownLink>
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            <DropdownLink onClick={logoutClickHandler} className="dropdown-link text-white-600" href="#">Logout</DropdownLink>
+                                        </Menu.Item>
+                                    </Menu.Items>
+                                </Menu>
                             ) : (
                                 <Link href="/login" className={classes.navlink}>Login</Link>
                             )}
@@ -110,7 +139,7 @@ const Layout = ({ children, title, description }) => {
                 <footer className={classes.footer}>
                     <p>Copyright &copy; 2023 | developed by abu bakar siddique </p>
                 </footer>
-            </ThemeProvider>
+            </ThemeProvider >
         </>
     )
 }
