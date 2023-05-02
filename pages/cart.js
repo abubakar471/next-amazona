@@ -82,6 +82,10 @@ const CartScreen = () => {
                                     </div>
                                 </li>
                                 <li>
+                                    {/* in router.push the way defined this url so that it will check 
+                                    whetether the user is signed in or not using the login page and
+                                    then redirect to the shipping page
+                                    */}
                                     <button onClick={() => router.push('login?redirect=/shipping')} className='primary-button w-full'>Checkout</button>
                                 </li>
                             </ul>
