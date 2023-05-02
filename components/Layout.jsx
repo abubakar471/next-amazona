@@ -7,9 +7,14 @@ import Toolbar from '@mui/material/Toolbar';
 import useStyles from '../utils/styles'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { Store } from '@/utils/Store';
-// import styles from "../styles/Layout.css"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useSession } from 'next-auth/react';
 
 const Layout = ({ children, title, description }) => {
+    // status is a flag , that shows loading of session , that means when we loading session we won't show
+    // user a name
+    const { status, data: session } = useSession();
     const { state } = useContext(Store);
     const { cart } = state;
     const classes = useStyles();
@@ -66,6 +71,8 @@ const Layout = ({ children, title, description }) => {
                 {description && <meta name="description" content={description}></meta>}
             </Head>
 
+            <ToastContainer position="bottom-center" limit={1} />
+
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <AppBar position="static" className={classes.navbar}>
@@ -75,6 +82,7 @@ const Layout = ({ children, title, description }) => {
                         </Link>
 
                         <div className="grow"></div>
+
                         <div>
                             <Link href="/cart" className="navlink">
                                 {cartItemsCount > 0 && (
@@ -85,7 +93,14 @@ const Layout = ({ children, title, description }) => {
                                 )}
                                 Cart
                             </Link>
-                            <Link href="/login" className="navlink">Login</Link>
+                            {status === 'loading' ? (
+                                'loading'
+                            ) : session?.user ? (
+                                <span className={classes.navlink}>{session.user.name}</span>
+                            ) : (
+                                <Link href="/login" className={classes.navlink}>Login</Link>
+                            )}
+
                         </div>
                     </Toolbar>
                 </AppBar >
