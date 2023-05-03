@@ -33,7 +33,7 @@ const useStyles = makeStyles({
         textAlign: 'center'
     },
     section: {
-        marginTop: 20,
+        marginTop: "20px",
         marginBottom: 20
     }
 });
