@@ -4,20 +4,25 @@ import NextAuth from "next-auth/next";
 import bcrypt from 'bcryptjs';
 import Credentials from "next-auth/providers/credentials";
 
+
 export default NextAuth({
     session: {
         strategy: "jwt"
     },
     callbacks: {
         async jwt({ user, token }) {
-            if (user?._id) token._id = user._id;
-            if (user?.isAdmin) token.isAdmin = user.isAdmin;
-            return token;
+            // if (user?._id) token._id = user._id;
+            // if (user?.isAdmin) token.isAdmin = user.isAdmin;
+            // return token;
+            user && (token.user = user);
+            return Promise.resolve(token)
         },
         async session({ session, token }) {
-            if (token?._id) session.user._id;
-            if (token?.isAdmin) session.user.isAdmin;
-            return session;
+            // if (token?._id) session.user._id = token._id;
+            // if (token?.isAdmin) session.user.isAdmin = token.isAdmin;
+            // return session;
+            session.user = token.user;
+            return Promise.resolve(session)
         }
     },
     providers: [
@@ -28,7 +33,6 @@ export default NextAuth({
                     email: credentials.email
                 })
                 await db.disconnect();
-
                 if (user && bcrypt.compareSync(credentials.password, user.password)) {
                     return {
                         _id: user._id,

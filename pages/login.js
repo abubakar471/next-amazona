@@ -28,6 +28,7 @@ const Login = () => {
                 redirect: false,
                 email, password
             });
+            
             if (result.error) {
                 toast.error(result.error);
             }
@@ -37,7 +38,7 @@ const Login = () => {
     }
     return (
         <Layout title="Login">
-            <form className='mx-auto my-10 max-w-screen-md' onSubmit={handleSubmit(submitHandler)}>
+            <form className='mx-auto mt-10 max-w-screen-md' onSubmit={handleSubmit(submitHandler)}>
                 <h1 className='mb-4 text-xl'>Login to your amazona account</h1>
                 <div className='mb-4'>
                     <label htmlFor='email'>E-mail</label>

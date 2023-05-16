@@ -1,14 +1,12 @@
 import CheckoutWizard from '@/components/CheckoutWizard'
 import Layout from '@/components/Layout'
 import { Store } from '@/utils/Store';
-import useStyles from '@/utils/styles';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 
 const Payment = () => {
-    const classes = useStyles();
     const router = useRouter();
     const { state, dispatch } = useContext(Store);
     const { cart } = state;
@@ -33,7 +31,7 @@ const Payment = () => {
     }
     return (
         <Layout title="Payment Method">
-            <div className={classes.section}>
+            <div className='mt-10'>
                 <CheckoutWizard activeStep={2} />
                 <form className='mx-auto max-w-screen-md'
                     onSubmit={submitHandler}
@@ -72,5 +70,8 @@ const Payment = () => {
         </Layout>
     )
 }
+
+// it means only logged in users can access this page
+Payment.auth = true
 
 export default Payment

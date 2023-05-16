@@ -71,6 +71,13 @@ function reducer(state, action) {
             }
         }
 
+        case "CART_CLEAR_ITEMS": {
+            return {
+                ...state,
+                cartItems: []
+            }
+        }
+
         default:
             return state;
 

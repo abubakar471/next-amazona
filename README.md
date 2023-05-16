@@ -23,6 +23,13 @@
     again it first time didn't work, so i removed all the code again and
     simply written all the code just as before and it worked.
 
+> ok here we hit a problem that after a give a windows setup, and then came to run this 
+    project again , i have encountered this problem , that was saying client has to connected first. so to solve this issue i just had to seed product and users data to the database and that solved this problem.
+    to seed data goto your browser and hit these two routes one after another
+    http://localhost:3000/api/seed (this is for the products data to seed)
+    http://localhost:3000/api/userSeed (this is for the users data to seed)
+
+
 # Log in 
 
 here i have used react-hook-form for client side form validation

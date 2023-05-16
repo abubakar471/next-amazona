@@ -1,14 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import Layout from '../components/Layout'
 import CheckoutWizard from '../components/CheckoutWizard'
-import useStyles from '@/utils/styles'
 import { useForm } from 'react-hook-form'
 import { Store } from '@/utils/Store'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 
 const Shipping = () => {
-    const classes = useStyles();
     const router = useRouter();
     const { handleSubmit, register, formState: { errors }, setValue } = useForm();
     const submitHandler = ({ fullName, address, city, postalCode, country }) => {
@@ -46,7 +44,7 @@ const Shipping = () => {
 
     return (
         <Layout title="Shipping" >
-            <div className={classes.section}>
+            <div className='mt-10'>
                 <CheckoutWizard activeStep={1} />
                 <form className='mx-auto max-w-screen-md'
                     onSubmit={handleSubmit(submitHandler)}
