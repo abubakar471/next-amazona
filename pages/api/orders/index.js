@@ -4,7 +4,10 @@ import db from "@/utils/db";
 
 
 const handler = nc();
-
+// here is a suggestion dont call the session from req.body.session 
+// call it here instead
+// const session = await getSession({req});
+// import getSession and remove the session const from the handler.post
 handler.post(async (req, res) => {
     console.log(req.body)
     // checking for session to see whether the user is connected or not
@@ -25,7 +28,6 @@ handler.post(async (req, res) => {
     })
 
     const order = await newOrder.save();
-    console.log(order);
     res.status(201).send(order)
 })
 
